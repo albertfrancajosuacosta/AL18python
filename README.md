@@ -3,7 +3,13 @@
 Selection instances more significant based on Active Learning.
 
 
-1
+## Classes
+
+- fixed_uncertainty.py
+- random_variable_uncertainty.py
+- variable_uncertainty.py
+
+
 
 
 # Contact
