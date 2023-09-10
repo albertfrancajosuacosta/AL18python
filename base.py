@@ -7,6 +7,8 @@ Active Learning 18
 
 import abc
 
+__all__ = ["ActiveLearningBase"]
+
 class ActiveLearningBase():
     
     """ Base classe for Active Learning Library """
