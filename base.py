@@ -12,7 +12,3 @@ __all__ = ["ActiveLearningBase"]
 class ActiveLearningBase():
     
     """ Base classe for Active Learning Library """
-    
-    @abc.abstractmethod()
-    def describe(self, describe):
-        ...

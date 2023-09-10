@@ -5,18 +5,19 @@ Active Learning 18
 @email: albertfrancajosuacosta@gmail.com
 """
 
+import numpy as np
 
 from .base import ActiveLearningBase
 
 
 
-class FixedUncertainty(ActiveLearningBase):
+class RandomVariableUncertainty (ActiveLearningBase):
 
-    """Strategy of Active Learning to select instances more significative based on uncertainty.
+    r"""Strategy of Active Learning to select instances more significative based on uncertainty.
 
-    The fixed uncertainty sampler selects samples for labeling based on the uncertainty of the prediction.
-    The higher the uncertainty, the more likely the sample will be selected for labeling. The uncertainty
-    measure is compared with a fixed uncertainty limit.
+   The random variable uncertainty sampler selects samples for labeling based on the uncertainty of the prediction.
+   The higher the uncertainty, the more likely the sample will be selected for labeling. The uncertainty
+   measure is compared with a random variable uncertainty limit.
 
 
     References
@@ -25,13 +26,14 @@ class FixedUncertainty(ActiveLearningBase):
 
 """
 
-    def __init__(self, theta: float = 0.95):
+    def __init__(self, theta: float = 0.95, s=0.5, delta=1.0):
         super().__init__()
+
         self.theta = theta
+        self.s = s
+        self.delta = delta
 
 
-    
-     
     def isSignificative(self, x, y_pred) -> bool:
         """Ask for the label of a current instance.
 
@@ -44,7 +46,7 @@ class FixedUncertainty(ActiveLearningBase):
 
         y_pred
 
-       Arrays of predicted labels
+           Arrays of predicted labels
 
 
         Returns
@@ -54,9 +56,18 @@ class FixedUncertainty(ActiveLearningBase):
             True for selected instance.
             False for not selecte instance.
 
+
         """
         maximum_posteriori = max(y_pred.values())
         selected = False
-        if maximum_posteriori < self.theta:
+
+        thetaRand = self.theta * np.random.normal(1,self.delta)
+
+        if maximum_posteriori < thetaRand:
+            self.theta = self.theta*(1-self.s)
             selected = True
+        else:
+            self.theta = self.theta*(1+self.s)
+            selected = False
+
         return selected
