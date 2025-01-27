@@ -1,4 +1,4 @@
-# AL18 
+# AL18p
 <img src="https://skillicons.dev/icons?i=py" />
 Selection instances more significant based on Active Learning.
 
