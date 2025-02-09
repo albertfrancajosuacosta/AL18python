@@ -10,7 +10,7 @@ Selection instances more significant based on Active Learning.
 - variable_uncertainty.py
 
 
-
+->I. Zliobaite, A. Bifet, B.Pfahringer, G. Holmes. “Active Learning with Drifting Streaming Data”, IEEE Transactions on Neural Netowrks and Learning Systems, Vol.25 (1), pp.27-39, 2014.
 
 # Contact
 Albert França Josuá Costa
